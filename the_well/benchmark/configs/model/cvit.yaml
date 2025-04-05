@@ -1,0 +1,12 @@
+_target_: the_well.benchmark.models.CViT
+patch_size: [1, 16, 16]
+grid_size: [128, 384]
+latent_dim: 512
+emb_dim: 768
+depth: 15
+num_heads: 12
+dec_emb_dim: 512
+dec_num_heads: 16
+dec_depth: 1
+mlp_ratio: 2
+out_dim: 4

@@ -1,0 +1,11 @@
+_target_: the_well.benchmark.models.Transolver_
+n_hidden: 128
+space_dim: 2
+n_layers: 8
+Time_Input: False
+out_dim: 4
+fun_dim: 24
+slice_num: 32
+unified_pos: True
+H: 128
+W: 384

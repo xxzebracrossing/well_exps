@@ -1,0 +1,13 @@
+_target_: the_well.benchmark.models.sinenet
+padding_mode: "zeros"
+hidden_channels: 64
+n_input_scalar_components: 2
+n_input_vector_components: 1
+n_output_scalar_components: 2
+n_output_vector_components: 1
+time_history: 6
+time_future: 1
+num_waves: 8
+mult: 1.425
+par1: 35490219
+
