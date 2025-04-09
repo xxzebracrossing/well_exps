@@ -33,7 +33,7 @@ class DefaultChannelsFirstFormatter(AbstractDataFormatter):
 
     def process_input(self, data: Dict) -> Tuple:
         x = data["input_fields"]
-        x = rearrange(x, "b t ... c -> b (t c) ...")
+        #x = rearrange(x, "b t ... c -> b (t c) ...")
         if "constant_fields" in data:
             flat_constants = rearrange(data["constant_fields"], "b ... c -> b c ...")
             x = torch.cat(
@@ -64,7 +64,7 @@ class DefaultChannelsLastFormatter(AbstractDataFormatter):
 
     def process_input(self, data: Dict) -> Tuple:
         x = data["input_fields"]
-        x = rearrange(x, "b t ... c -> b ... (t c)")
+        #x = rearrange(x, "b t ... c -> b ... (t c)")
         if "constant_fields" in data:
             flat_constants = data["constant_fields"]
             x = torch.cat(
