@@ -25,7 +25,7 @@ class ZScoreNormalization:
         self.core_field_names = core_field_names
         self.core_constant_field_names = core_constant_field_names
 
-        required_keys = {"mean", "std", "mean_delta", "std_delta"}
+        required_keys = {"mean", "std"}#{"mean", "std", "mean_delta", "std_delta"}
         assert required_keys.issubset(
             stats.keys()
         ), f"Missing required keys: {required_keys - set(stats.keys())}"
@@ -39,7 +39,7 @@ class ZScoreNormalization:
             field: torch.clip(torch.as_tensor(stats["std"][field]), min=min_denom)
             for field in core_field_names + core_constant_field_names
         }
-        self.means_delta = {
+        """self.means_delta = {
             field: torch.as_tensor(stats["mean_delta"][field])
             for field in core_field_names
         }
@@ -48,17 +48,17 @@ class ZScoreNormalization:
                 torch.as_tensor(stats["std_delta"].get(field, min_denom)), min=min_denom
             )
             for field in core_field_names
-        }
+        }"""
 
         # Initialize missing deltas for constant fields
-        self.constant_means_delta = {
+        """self.constant_means_delta = {
             field: torch.full_like(self.means[field], min_denom)
             for field in core_constant_field_names
         }
         self.constant_stds_delta = {
             field: torch.full_like(self.stds[field], min_denom)
             for field in core_constant_field_names
-        }
+        }"""
 
         # Precompute flattened stats for each mode
         self._precompute_flattened_stats()
@@ -85,7 +85,7 @@ class ZScoreNormalization:
                 [self.stds[field].flatten() for field in self.core_constant_field_names]
             ),
         }
-        self.flattened_means_delta = {
+        """self.flattened_means_delta = {
             "variable": safe_cat(
                 [self.means_delta[field].flatten() for field in self.core_field_names]
             ),
@@ -106,7 +106,7 @@ class ZScoreNormalization:
                     for field in self.core_constant_field_names
                 ]
             ),
-        }
+        }"""
 
     def normalize(self, x: torch.Tensor, field: str) -> torch.Tensor:
         """Normalize a single field (field-wise normalization)."""
